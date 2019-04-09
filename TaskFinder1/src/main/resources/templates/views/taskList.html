@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{fragments/main_layout}">
+<head>
+
+<title>Index Page</title>
+
+
+</head>
+<body>
+
+
+
+<div layout:fragment="content" class="container mySpace">
+	     <form action="/tasks" class="form-inline">
+	        <div class="form-group mb-2">
+	         <input type="text" class="form-control" name="description" placeholder="Search By Description" />
+	         <input type="submit" value="Search"  class="btn btn-primary" />
+	        </div>
+	     </form>
+		<div class="card">
+			<div class="card card-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Date Posted</th>
+							<th>Location</th>
+							<th>Category</th>
+							<th>Description</th>
+							<th>Posted By</th>  
+						</tr>
+					</thead>
+				 	<tbody>
+						<tr th:each="task:${tasks}">
+							
+							<td th:text="${task.date}"></td>
+							<td th:text="${task.location}"></td>
+							<td th:text="${task.category}"></td>
+							<td th:text="${task.description}"></td>
+							 <td th:text="${task.user.email}"></td> 
+						 
+						<td><a  th:href="@{/makeOffer(id=${task.id})}" class="btn btn-dark" >Make An Offer <i class="fas fa-comment-dollar"></i></a></td>
+						</tr>
+					</tbody> 
+
+				</table>
+			</div>
+		</div>
+	</div>  
+	
+	
+	
+</body>
+</html>
